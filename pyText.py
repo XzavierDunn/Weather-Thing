@@ -13,6 +13,7 @@ senderId = ""
 
 def getMessage():
     with open("./beans.txt", 'r') as mes:
+        x = json.load(mes)
         weather = []
         final = []
 
@@ -26,7 +27,7 @@ def getMessage():
         y = dict(x["main"])
         for k, v in enumerate(y):
             main[v] = y[v]
-        
+
         final = \
 f"""Xzavier's boujee weather app\n
 City: {x["name"]}\n
@@ -66,3 +67,8 @@ def sendText(num):
         print(e.response['Error']['Message'])
     else:
         print("Message sent")
+
+with open("numbers.txt", 'r') as nums:
+    nums = nums.readlines()
+    for i in nums:
+        sendText(i)
