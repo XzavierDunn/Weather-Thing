@@ -7,14 +7,9 @@ import (
 	"net/http"
 
 	service "../Service"
+    model "../Model"
 )
 
-// Data for saving weather
-type Data struct {
-	Name    string
-	Weather string
-	Main    string
-}
 
 // Index index
 func Index(w http.ResponseWriter, r *http.Request) {
@@ -26,15 +21,6 @@ func Weather(w http.ResponseWriter, r *http.Request) {
 	x := service.GetWeather()
 	var result map[string]interface{}
 	json.Unmarshal(x, &result)
-	// main := fmt.Sprintf("%v", result["main"])
-	// weather := fmt.Sprintf("%v", result["weather"])
-	// name := fmt.Sprintf("%v", result["name"])
-	// data := Data{Name: name, Weather: weather, Main: main}
-	// xy, _ := json.Marshal(x)
-
-	err := ioutil.WriteFile("./beans.txt", x, 0644)
-	if err != nil {
-		log.Fatal(err)
-	}
+    model.saveWeather(x)
 	w.Write(x)
 }

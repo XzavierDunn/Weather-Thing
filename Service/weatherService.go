@@ -28,7 +28,6 @@ func GetWeather() []byte {
 	}
 
 	defer res.Body.Close()
-	// var response map[string]string
 	json.Marshal(body)
 	return body
 }
