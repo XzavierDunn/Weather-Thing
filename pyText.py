@@ -1,3 +1,5 @@
+#!/usr/bin/python3
+
 import boto3
 from botocore.exceptions import ClientError
 import os
@@ -9,7 +11,7 @@ applicationId = os.getenv("APP_ID")
 
 originationNumber = ""
 registeredKeyword = ""
-senderId = ""
+senderId = "xd"
 
 def getMessage():
     with open("./beans.txt", 'r') as mes:
@@ -29,7 +31,7 @@ def getMessage():
             main[v] = y[v]
 
         final = \
-f"""Xzavier's boujee weather app\n
+f"""Yeet\n
 City: {x["name"]}\n
 Current Weather: {weather[1]} - {weather[2]}\n
 Feels like: {main["feels_like"]}

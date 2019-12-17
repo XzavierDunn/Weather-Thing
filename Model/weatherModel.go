@@ -1,15 +1,22 @@
 package model
 
 import (
-    "log"
-    "io/ioutil"
+    "os"
+    "os/exec"
+	"io/ioutil"
+	"log"
 )
 
-func saveWeather(x) err error{
-    err := ioutil.WriteFile("./beans.txt", x, 0644)
+// SaveWeather to file
+func SaveWeather(x []byte) {
+	err := ioutil.WriteFile("./beans.txt", x, 0644)
 	if err != nil {
 		log.Fatal(err)
-        return 
-    return true
 	}
+
+    file := os.Getenv("pyFile")
+    c := exec.Command(file)
+    if err := c.Run(); err != nil {
+        log.Fatal(err)
+    }
 }

@@ -2,14 +2,11 @@ package controller
 
 import (
 	"encoding/json"
-	"io/ioutil"
-	"log"
 	"net/http"
 
+	model "../Model"
 	service "../Service"
-    model "../Model"
 )
-
 
 // Index index
 func Index(w http.ResponseWriter, r *http.Request) {
@@ -21,6 +18,6 @@ func Weather(w http.ResponseWriter, r *http.Request) {
 	x := service.GetWeather()
 	var result map[string]interface{}
 	json.Unmarshal(x, &result)
-    model.saveWeather(x)
+	model.SaveWeather(x)
 	w.Write(x)
 }
