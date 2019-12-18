@@ -1,8 +1,8 @@
 package model
 
 import (
-    "os"
-    "os/exec"
+//    "os"
+//    "os/exec"
 	"io/ioutil"
 	"log"
 )
@@ -14,9 +14,9 @@ func SaveWeather(x []byte) {
 		log.Fatal(err)
 	}
 
-    file := os.Getenv("pyFile")
-    c := exec.Command(file)
-    if err := c.Run(); err != nil {
-        log.Fatal(err)
-    }
+//    file := os.Getenv("pyFile")
+//    c := exec.Command(file)
+//    if err := c.Run(); err != nil {
+//        log.Fatal(err)
+//    }
 }
