@@ -1,0 +1,3 @@
+APP_ID=ab44ae0bc80e4dddbbf2b56bed8c4b57
+API_URL=https://api.openweathermap.org/data/2.5/weather?q=Indianapolis,us&units=imperial&APPID=757c91406539e13c65f695e54025fe27
+pyFile=/pyText.py

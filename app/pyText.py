@@ -74,3 +74,4 @@ with open("numbers.txt", 'r') as nums:
     nums = nums.readlines()
     for i in nums:
         sendText(i)
+
