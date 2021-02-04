@@ -19,5 +19,5 @@ func Weather(w http.ResponseWriter, r *http.Request) {
 	var result map[string]interface{}
 	json.Unmarshal(x, &result)
 	model.SaveWeather(x)
-	w.Write(x)
+    w.Write(x)
 }

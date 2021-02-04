@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 
 import boto3
 from botocore.exceptions import ClientError
@@ -12,6 +12,7 @@ applicationId = os.getenv("APP_ID")
 originationNumber = ""
 registeredKeyword = ""
 senderId = "xd"
+
 
 def getMessage():
     with open("./beans.txt", 'r') as mes:
@@ -31,9 +32,10 @@ def getMessage():
             main[v] = y[v]
 
         final = \
-f"""Yeet\n
+            f"""
 City: {x["name"]}\n
-Current Weather: {weather[1]} - {weather[2]}\n
+Current Weather: {weather[1]}
+Description: {weather[2]}\n
 Feels like: {main["feels_like"]}
 Actual Temperature: {main["temp"]}
 Max Temp: {main["temp_max"]}
@@ -44,7 +46,9 @@ Humidity: {main["humidity"]}"""
 
 
 def sendText(num):
-    client = boto3.client('pinpoint',region_name=region)
+    profile = boto3.session.Session(
+        profile_name="WeatherBoi")
+    client = profile.client('pinpoint', region_name=region)
     try:
         response = client.send_messages(
             ApplicationId=applicationId,
@@ -66,12 +70,12 @@ def sendText(num):
             }
         )
     except ClientError as e:
-        print(e.response['Error']['Message'])
+        print('Error:', e.response['Error']['Message'])
     else:
         print("Message sent")
+
 
 with open("numbers.txt", 'r') as nums:
     nums = nums.readlines()
     for i in nums:
         sendText(i)
-
