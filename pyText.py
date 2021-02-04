@@ -8,7 +8,7 @@ import json
 region = "us-east-1"
 messageType = "TRANSACTIONAL"
 applicationId = os.getenv("APP_ID")
-profile = 'default' # AWS Credentials profile
+awsProfile = 'default'  # AWS Credentials profile
 
 originationNumber = ""
 registeredKeyword = ""
@@ -48,7 +48,7 @@ Humidity: {main["humidity"]}"""
 
 def sendText(num):
     profile = boto3.session.Session(
-        profile_name=profile)
+        profile_name=awsProfile)
     client = profile.client('pinpoint', region_name=region)
     try:
         response = client.send_messages(
